@@ -50,36 +50,103 @@ function capitalize(str) {
 
 //     Напишите функцию changeRegister(str), которая принимает в качестве аргумента строку и и заменяет регистр каждого символа на противоположный. Например, если вводится «КаЖдЫй ОхОтНиК», то на выходе должно быть «кАжДыЙ оХоТнИк».
 function changeRegister(str) {
-
+        for (let i = 0; i < str.length; i++) {
+                if(str[i]===str[i].toUpperCase()) {
+                        str=str.replace(str[i], str[i].toLowerCase())
+                }
+                else {
+                        str=str.replace(str[i], str[i].toUpperCase())        
+                }
+        }
+        return str;
 }
 //     Напишите функцию removeChar(str), которая возвращает строку, очищенную от всех не буквенно-цифровых символов.
 function removeChar(str) {
-
+        return str.replace(/[^0-9a-zA-Zа-яА-Я\s+]/gi, '')
 }
+
 //    Напишите функцию zeros(num, len), которая дополняет нулями до указанной длины числовое значение.
 function zeros(num, len) {
+        str=String(num);
+        index=str.length;
 
+        if(index===len) {
+                return num;
+        }
+        else if(index<len) {
+                for (; index < len; index++) {
+                        num=num*10; 
+                }
+                return num;
+        }
+        else {
+                for (; index > len; index--) {
+                        num=num/10; 
+                }
+                return num; 
+        }
 }
+
+zeros(123, 5)
 //     Напишите функцию comparison(str1, str2), которая сравнивает строки без учёта регистра символов.
 function comparison(str1, str2) {
-
+        if(str.toLowerCase==str2.toLowerCase) {
+                return true;
+        }
+        else {
+                return false;
+        }
 }
+
 //     Напишите функцию insensitiveSearch(str1, str2), которая осуществляет поиск подстроки str2 в строке str1 без учёта регистра символов.
 function insensitiveSearch(str1, str2) {
+        str1=str1.toLowerCase();
+        str2=str2.toLowerCase();
+        return str1.indexOf(str2);
 
 }
+
 //     Напишите функцию initCap(str), которая преобразует стиль написания составных слов строки в CamelCase, при котором несколько слов пишутся слитно без пробелов, при этом каждое слово внутри строки пишется с заглавной буквы.
 function initCap(str) {
+        let letter;
+        let pos=0;
+        let index=0;
+        for (let i = 0; i < str.length; i++) {
+                pos = index+1;
+                index=str.indexOf(' ', pos)
+                letter=str[index+1].toUpperCase();
+                str=str.replace(str[index+1], letter)
+                str=str.replace(' ', '')
+        }
+        return str;
 
 }
 //     Напишите функцию initSnake(str), которая преобразует стиль написания составных слов строки из CamelCase в snake_case, при котором несколько слов разделяются символом подчеркивания (_), причём каждое слово пишется с маленькой буквы.
 function initSnake(str) {
-
+        let letter;
+        let pos=0;
+        let index=0;
+        for (let i = 0; i < str.length; i++) {
+                pos = index+1;
+                index=str.indexOf(' ', pos)
+                letter=str[index+1].toLowerCase();
+                str=str.replace(str[index+1], letter)
+                str=str.replace(' ', '_')
+        }
+        return str;
 }
 //     Напишите функцию repeatStr(str, n), которая возвращает строку повторяемую определённое количество раз.
 function repeatStr(str, n) {
+        let result='';
+        for (let i = 0; i < n; i++) {
+                result+=str.slice(0)+' ';
+                
+        }
 
+        return result;
 }
+
+repeatStr('Привет', 5)
 //     Создайте функцию endsWith(), который сравнивает подстроку str1 с окончанием исходной строки str и определяет заканчивается ли строка символами подстроки.
 function endsWith(str, str1){
 
@@ -93,9 +160,8 @@ function limitStr(str, n, symb){
 
 }
 //     Напишите функцию count(str, stringsearch), которая возвращает количество символов stringsearch в строке str.
-function count(str, stringsearch){
 
-}
+
 //     Напишите функцию strip(str), которая удаляет все лишние пробелы из строки str.
 function strip(str){
 
